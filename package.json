@@ -1,0 +1,10 @@
+{
+    "name": "remotejs-samples",
+    "version": "0.1.0",
+    "description": "reMOTE.js - sample applications",
+    "dependencies": {
+        "express": "~4.13.3",
+        "compression": "1.5.2",
+        "serve-index": "~1.7.3"
+    }
+}
