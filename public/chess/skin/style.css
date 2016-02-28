@@ -1,0 +1,27 @@
+/*
+ * Description: Skin for reMOTE.js, loaded on remote control device
+ *              (smartphone/tablet)
+ * Application: Chess
+ * Version:     0.1.0
+ * Author:      Christian David (c.david@raumhoch.de)
+ */
+body {
+    background: #369;
+    color: #000;
+}
+
+table {
+    background: #000;
+}
+
+.button {
+    color: #999;
+}
+
+tr:nth-child(odd) td:nth-child(odd) {
+    background: #FFF;
+}
+
+tr:nth-child(even) td:nth-child(even) {
+    background: #FFF;
+}

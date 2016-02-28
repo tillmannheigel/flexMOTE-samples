@@ -1,4 +1,10 @@
-/* general skin styles */
+/*
+ * Description: Skin for reMOTE.js, loaded on remote control device
+ *              (smartphone/tablet)
+ * Application: Hello World
+ * Version:     0.1.0
+ * Author:      Christian David (c.david@raumhoch.de)
+ */
 body {
     background: #666;
     color: #000;
@@ -40,18 +46,4 @@ body {
 
 #home {
     color: #000;
-}
-
-/* layout adjustments */
-#layout-1 td {
-    width: 50px;
-    height: 50px;
-}
-
-#layout-1 .spacer, .button, .link, .text, .html {
-    line-height: 50px;
-}
-
-#layout-1 * {
-    font-size: 16px;
 }

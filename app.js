@@ -14,5 +14,5 @@ app.use(serveIndex(__dirname + '/public', {
 
 // start
 http.listen(3001, function() {
-    console.log('listening on *:3001');
+    console.log('reMOTE.js - samples; listening on *:3001');
 });
