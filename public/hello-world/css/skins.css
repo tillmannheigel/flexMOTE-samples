@@ -5,38 +5,41 @@
  * Version:     0.1.0
  * Author:      Christian David (c.david@raumhoch.de)
  */
-body {
+#skin-1 {
     background: #666;
     color: #000;
 }
 
-.red {
+#skin-1 .red {
     color: #F00;
 }
 
-.green {
+#skin-1 .green {
     color: #090;
 }
 
-.blue {
+#skin-1 .blue {
     color: #00F;
 }
 
-.button {
+#skin-1 .button {
     font-weight: bold;
 }
 
-.button, .text {
+#skin-1 .button, #skin-1 .text, #skin-1 .link {
     background: #DDD;
 }
 
-.html {
+#skin-1 .link {
+    color: #00C;
+}
+
+#skin-1 .html {
     color: #333;
     background: #FFF;
 }
 
-/* ui elements */
-#status {
+#skin-1 #status {
     text-align: left;
     color: #666;
     text-indent: 10px;
@@ -44,6 +47,6 @@ body {
     font-size: 16px;
 }
 
-#home {
+#skin-1 #home {
     color: #000;
 }
