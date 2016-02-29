@@ -19,120 +19,130 @@
         Remote.sendCommand({
             action: 'set',
             type: 'skin',
-            id: 'skin-chess',
+            id: 'skin-1',
             data: {
                 url: 'http://localhost:3001/chess/skin/style.css'
             }
         });
 
-        // send default layout
         Remote.sendCommand({
             action: 'set',
-            type: 'layout',
-            id: '3',
+            type: 'skin',
+            id: 'skin-2',
             data: {
-                name: 'Chess',
-                orientation: 'landscape',
-                cols: 8,
-                rows: 8,
-                elements: [{
-                    type: "Button",
-                    "label": "T"
-                }, {
-                    type: "Button",
-                    "label": "L"
-                }, {
-                    type: "Button",
-                    "label": "S"
-                }, {
-                    type: "Button",
-                    "label": "K"
-                }, {
-                    type: "Button",
-                    "label": "D"
-                }, {
-                    type: "Button",
-                    "label": "S"
-                }, {
-                    type: "Button",
-                    "label": "L"
-                }, {
-                    type: "Button",
-                    "label": "T"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "B"
-                }, {
-                    type: "Button",
-                    "label": "T"
-                }, {
-                    type: "Button",
-                    "label": "L"
-                }, {
-                    type: "Button",
-                    "label": "S"
-                }, {
-                    type: "Button",
-                    "label": "D"
-                }, {
-                    type: "Button",
-                    "label": "K"
-                }, {
-                    type: "Button",
-                    "label": "S"
-                }, {
-                    type: "Button",
-                    "label": "L"
-                }, {
-                    type: "Button",
-                    "label": "T"
-                }]
+                url: 'http://localhost:3001/chess/skin/style.css'
             }
+        }, function() {
+
+            // send default layout
+            Remote.sendCommand({
+                action: 'set',
+                type: 'layout',
+                id: 'layout-1',
+                data: {
+                    name: 'Chess',
+                    orientation: 'landscape',
+                    cols: 8,
+                    rows: 8,
+                    elements: [{
+                        type: "Button",
+                        "label": "T"
+                    }, {
+                        type: "Button",
+                        "label": "L"
+                    }, {
+                        type: "Button",
+                        "label": "S"
+                    }, {
+                        type: "Button",
+                        "label": "K"
+                    }, {
+                        type: "Button",
+                        "label": "D"
+                    }, {
+                        type: "Button",
+                        "label": "S"
+                    }, {
+                        type: "Button",
+                        "label": "L"
+                    }, {
+                        type: "Button",
+                        "label": "T"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "B"
+                    }, {
+                        type: "Button",
+                        "label": "T"
+                    }, {
+                        type: "Button",
+                        "label": "L"
+                    }, {
+                        type: "Button",
+                        "label": "S"
+                    }, {
+                        type: "Button",
+                        "label": "D"
+                    }, {
+                        type: "Button",
+                        "label": "K"
+                    }, {
+                        type: "Button",
+                        "label": "S"
+                    }, {
+                        type: "Button",
+                        "label": "L"
+                    }, {
+                        type: "Button",
+                        "label": "T"
+                    }]
+                }
+            });
         });
     };
 

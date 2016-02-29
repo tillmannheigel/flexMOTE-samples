@@ -12,11 +12,3 @@ body {
 h1, p {
     padding-bottom: 20px;
 }
-
-table {
-    background: #000;
-}
-
-tr:nth-child(even) td:nth-child(even) {
-    background: #FFF;
-}
