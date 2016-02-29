@@ -6,151 +6,40 @@
         throw Error("requires remote.js!");
     }
 
-    var Remote = window.Remote;
+    if (!window.Config) {
+        throw Error("requires config.js");
+    }
 
-    // ----- overrides ---------------------------------------------------------
+    // ----- application -------------------------------------------------------
+    var Remote = window.Remote;
+    var Config = window.Config;
+    var App = window.App = {};
+
     /**
-     * override handleCommand
+     * defines the default handler for remote commands.
      * @param {Object} cmd
      */
-    Remote.handleCommand = function(cmd) {
+    App.handleCommand = function(cmd) {
 
-        // send skin
-        Remote.sendCommand({
-            action: 'set',
-            type: 'skin',
-            id: 'skin-1',
-            data: {
-                url: 'http://localhost:3001/chess/skin/style.css'
-            }
-        });
+        switch (cmd.type) {
+            case 'layout':
+            case 'skin':
+                Remote.handleCommand(cmd);
+                break;
 
-        Remote.sendCommand({
-            action: 'set',
-            type: 'skin',
-            id: 'skin-2',
-            data: {
-                url: 'http://localhost:3001/chess/skin/style.css'
-            }
-        }, function() {
-
-            // send default layout
-            Remote.sendCommand({
-                action: 'set',
-                type: 'layout',
-                id: 'layout-1',
-                data: {
-                    name: 'Chess',
-                    orientation: 'landscape',
-                    cols: 8,
-                    rows: 8,
-                    elements: [{
-                        type: "Button",
-                        "label": "T"
-                    }, {
-                        type: "Button",
-                        "label": "L"
-                    }, {
-                        type: "Button",
-                        "label": "S"
-                    }, {
-                        type: "Button",
-                        "label": "K"
-                    }, {
-                        type: "Button",
-                        "label": "D"
-                    }, {
-                        type: "Button",
-                        "label": "S"
-                    }, {
-                        type: "Button",
-                        "label": "L"
-                    }, {
-                        type: "Button",
-                        "label": "T"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "B"
-                    }, {
-                        type: "Button",
-                        "label": "T"
-                    }, {
-                        type: "Button",
-                        "label": "L"
-                    }, {
-                        type: "Button",
-                        "label": "S"
-                    }, {
-                        type: "Button",
-                        "label": "D"
-                    }, {
-                        type: "Button",
-                        "label": "K"
-                    }, {
-                        type: "Button",
-                        "label": "S"
-                    }, {
-                        type: "Button",
-                        "label": "L"
-                    }, {
-                        type: "Button",
-                        "label": "T"
-                    }]
-                }
-            });
-        });
+            default:
+                Remote.sendCommand(Config.skins['skin-1'], function() {
+                    Remote.sendCommand(Config.layouts['layout-1']);
+                });
+                break;
+        }
     };
 
-    // ----- initialization  ---------------------------------------------------
+    // ----- initialization ----------------------------------------------------
     // @TODO connect to right channel / room / namespace
     Remote.connection = io('http://localhost:3000');
     Remote.connection.on('connect', Remote.onConnect);
     Remote.connection.on('disconnect', Remote.onDisconnect);
-    Remote.connection.on('cmd', Remote.handleCommand);
+    Remote.connection.on('cmd', App.handleCommand);
 
 })(window);
