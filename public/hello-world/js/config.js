@@ -5,6 +5,7 @@
      *
      */
     var Config = window.Config = {};
+    Config.server = 'http://localhost:3000/';
     Config.skins = {};
     Config.layouts = {};
 
