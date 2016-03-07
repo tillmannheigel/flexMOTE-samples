@@ -1,9 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
 body {
     padding: 20px 270px 20px 20px;
 }
 
 h1, p {
     padding-bottom: 20px;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
 }
 
 #qrcode {
@@ -13,17 +24,10 @@ h1, p {
     right: 20px;
     z-index: 1000;
     background: #FFF;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     box-shadow: 0 0 4px #000;
 }
 
-a {
-    color: #000;
-    text-decoration: none;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
+#qrcode img {
+    padding-bottom: 20px;
 }
