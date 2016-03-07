@@ -1,7 +1,7 @@
 {
-    "name": "remotejs-samples",
+    "name": "flexmote-samples",
     "version": "0.1.0",
-    "description": "reMOTE.js - sample applications",
+    "description": "flexMOTE - sample applications",
     "dependencies": {
         "express": "~4.13.3",
         "compression": "1.5.2",

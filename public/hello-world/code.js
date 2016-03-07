@@ -1,9 +1,9 @@
-$('body').append('<p>Attempting to connect to reMOTE.js server....</p>');
+$('body').append('<p>Attempting to connect to flexMOTE server....</p>');
 
 /**
  * @public remote connection
  */
-Remote.connection = io('http://remote.cloudfolio.com');
+Remote.connection = io('http://localhost:3000');
 
 /**
  * onConnect event handler
@@ -17,7 +17,7 @@ Remote.connection.on('connect', function() {
         // generate qrcode
         $('#qrcode').empty();
         var qrcode = new QRCode("qrcode", {
-            text: "http://remote.cloudfolio.com/#" + room.toString(),
+            text: "http://localhost:3000/#" + room.toString(),
             width: 256,
             height: 256,
             colorDark: "#000000",
@@ -26,8 +26,8 @@ Remote.connection.on('connect', function() {
         });
 
         // some info texts...
-        var info = '<p><a href="http://remote.cloudfolio.com/#' + room + '">';
-        info += 'remote.cloudfolio.com<br/>#<strong>' + room + '</strong></p>';
+        var info = '<p><a href="http://localhost:3000/#' + room + '">';
+        info += 'localhost:3000<br/>#<strong>' + room + '</strong></p>';
         $('body').append('<p>Joined room: ' + room + '</p>');
         $('#qrcode').append(info);
     });
@@ -37,7 +37,7 @@ Remote.connection.on('connect', function() {
  * onDisconnect event handler
  */
 Remote.connection.on('disconnect', function() {
-    $('body').append('<p>Disconnected from reMOTE.js server. Trying to reconnect...</p>');
+    $('body').append('<p>Disconnected from flexMOTE server. Trying to reconnect...</p>');
     $('#qrcode').empty();
 });
 

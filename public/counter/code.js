@@ -3,7 +3,7 @@ var counter = 0;
 /**
  * @public remote connection
  */
-Remote.connection = io('http://remote.cloudfolio.com');
+Remote.connection = io('http://localhost:3000');
 
 /**
  * onConnect event handler
@@ -16,7 +16,7 @@ Remote.connection.on('connect', function() {
         // generate qrcode
         $('#qrcode').empty();
         var qrcode = new QRCode("qrcode", {
-            text: "http://remote.cloudfolio.com/#" + room.toString(),
+            text: "http://localhost:3000/#" + room.toString(),
             width: 256,
             height: 256,
             colorDark: "#000000",
@@ -25,8 +25,8 @@ Remote.connection.on('connect', function() {
         });
 
         // some info texts...
-        var info = '<p><a target="_blank" href="http://remote.cloudfolio.com/#' + room + '">';
-        info += 'remote.cloudfolio.com<br/>#<strong>' + room + '</strong></p>';
+        var info = '<p><a target="_blank" href="http://localhost:3000/#' + room + '">';
+        info += 'localhost:3000<br/>#<strong>' + room + '</strong></p>';
         $('#qrcode').append(info);
     });
 });

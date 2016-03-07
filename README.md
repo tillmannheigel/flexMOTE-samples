@@ -1,10 +1,10 @@
-# reMOTE.js - Sample applications
+# flexMOTE - Sample applications
 
 ## System requirements
 
 - nodejs
 - npm
-- reMOTE.js
+- https://github.com/raumHOCH/flexMOTE/
 
 ## Getting started
 - clone repository
@@ -18,6 +18,6 @@
 - start server
       node app.js
 
-- point your browser to http://localhost:3001
+- start flexMOTE server (see docs)
 
-- start reMOTE.js server (see docs)
+- point your browser to http://localhost:3001

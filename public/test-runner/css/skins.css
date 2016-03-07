@@ -1,0 +1,60 @@
+/*
+ * Description: Skin for flexMOTE, loaded on remote control device
+ *              (smartphone/tablet)
+ * Application: Test Runner
+ * Version:     0.1.0
+ * Author:      Christian David (c.david@graphscape.de)
+ */
+#skin-1 {
+    background: #666;
+    color: #000;
+}
+
+#skin-1 .red {
+    color: #F00;
+}
+
+#skin-1 .green {
+    color: #090;
+}
+
+#skin-1 .blue {
+    color: #00F;
+}
+
+#skin-1 .button {
+    font-weight: bold;
+}
+
+#skin-1 .button, #skin-1 .text, #skin-1 .link, #skin-1 .debug {
+    background: #DDD;
+}
+
+#skin-1 .debug {
+    font-size: 12px;
+}
+
+#skin-1 .link {
+    color: #00C;
+}
+
+#skin-1 .html {
+    color: #333;
+    background: #FFF;
+}
+
+#skin-1 #status, #skin-1 #debug {
+    text-align: left;
+    color: #666;
+    padding: 10px;
+    line-height: 2em;
+    font-size: 12px;
+}
+
+#skin-1 #debug {
+    background: #EEE;
+}
+
+#skin-1 #home {
+    color: #000;
+}
