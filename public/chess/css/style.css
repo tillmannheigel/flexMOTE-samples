@@ -12,3 +12,62 @@ body {
 h1, p {
     padding-bottom: 20px;
 }
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+#qrcode {
+    text-align: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #FFF;
+    padding: 20px 20px 0 20px;
+    box-shadow: 0 0 4px #000;
+}
+
+#qrcode img {
+    padding-bottom: 20px;
+}
+
+table {
+    transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -webkit-transform-origin: top left;
+}
+
+tr {
+    vertical-align: top;
+}
+
+td {
+    width: 100px;
+    height: 100px;
+}
+
+.spacer, .button, .link, .text, .html {
+    width: 100%;
+    height: 100%;
+    line-height: 100px;
+    text-align: center;
+    border: 0;
+    background: none;
+    color: #FFF;
+    display: block;
+}
+
+.html {
+    width: auto;
+    text-align: left;
+    line-height: 1.4em;
+    overflow: auto;
+}
+
+.html p {
+    padding: 10px;
+}

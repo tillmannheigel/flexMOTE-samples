@@ -17,7 +17,7 @@
         type: 'skin',
         id: 'skin-1',
         data: {
-            url: 'http://localhost:3001/chess/css/skins.css'
+            url: 'http://playground.graphscape.de/remotejs/chess/css/skins.css'
         }
     };
 
@@ -29,7 +29,7 @@
         type: 'skin',
         id: 'skin-2',
         data: {
-            url: 'http://localhost:3001/chess/css/skins.css'
+            url: 'http://playground.graphscape.de/remotejs/chess/css/skins.css'
         }
     };
 
