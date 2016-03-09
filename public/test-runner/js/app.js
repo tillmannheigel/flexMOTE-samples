@@ -54,15 +54,12 @@
         switch (cmd.type) {
             case 'user':
                 switch (cmd.action) {
-                    case 'leave':
-                    case 'disconnect':
-                        if (App.user && App.user.id == cmd.id) {
+                    case 'set':
+                        if (!cmd.data && App.user && App.user.id == cmd.id) {
                             App.onUserTimeout();
                         }
-                        break;
 
-                    case 'join':
-                        if (!App.user || App.user.id == cmd.id) {
+                        if (cmd.data && (!App.user || App.user.id == cmd.id)) {
                             App.user = cmd;
                             $('#user').html(cmd.id).show();
                             Remote.sendCommand(App.user.id, Config.skins['skin-1'], function() {
@@ -75,6 +72,9 @@
         }
     };
 
+    /**
+     *
+     */
     App.onUserTimeout = function() {
         clearInterval(App.userTimeout);
         Remote.DEBUG && console.log('app | onUserTimeout');
@@ -87,9 +87,17 @@
      */
     App.onConnect = function() {
         Remote.DEBUG && console.log('app | onConnect');
+
         $('body').append('<p>Attempting to connect to flexMOTE server....</p>');
-        Remote.join(App.room, function(room) {
-            App.room = room;
+
+        Remote.register({
+            app: 'test-runner',
+            version: '0.1.0',
+            maxUsers: 1,
+            timeout: 5 * 1000, // 5 seconds
+            stickySessions: true
+        }, function(room) {
+
             var html = '<p>Connection established. Open RC ';
             html += '<a target="_blank" href="' + Config.server + '#' + room + '">';
             html += '#' + room + '</a></p>';
@@ -109,7 +117,7 @@
             var info = '<p><a target="_blank" href="http://localhost:3000/#' + room + '">';
             info += 'localhost:3000<br/>#<strong>' + room + '</strong></p>';
             $('#qrcode').append(info);
-            
+
             App.room = room;
         });
     };

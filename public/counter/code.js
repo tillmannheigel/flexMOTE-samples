@@ -11,7 +11,13 @@ Remote.connection = io('http://localhost:3000');
 Remote.connection.on('connect', function() {
 
     // register a channel
-    Remote.join(null, function(room) {
+    Remote.register({
+        app: 'counter',
+        version: '0.1.0',
+        maxUsers: 1,
+        timeout: 10 * 1000, // 10 seconds
+        stickySessions: false
+    }, function(room) {
 
         // generate qrcode
         $('#qrcode').empty();
@@ -46,36 +52,37 @@ Remote.connection.on('cmd', function(cmd) {
 
     switch (cmd.action) {
         case 'set':
+
             switch (cmd.type) {
                 case 'button':
                     if (cmd.data.state == 'pressed') {
                         counter += (cmd.id == 'plus' ? 1 : -1);
                         $('#counter').html(counter);
                     }
-            }
-            break;
+                    break;
 
-        default:
-            Remote.sendCommand('*', {
-                action: 'set',
-                type: 'layout',
-                id: 'layout-1',
-                data: {
-                    name: 'Layout 1',
-                    cols: 1,
-                    rows: 3,
-                    elements: [{
-                        type: "Button",
-                        label: "+",
-                        id: "plus",
-                    }, {}, {
-                        type: "Button",
-                        label: "-",
-                        id: "minus",
-                    }]
-                }
-            });
-            break;
+                case 'user':
+                    Remote.sendCommand('*', {
+                        action: 'set',
+                        type: 'layout',
+                        id: 'layout-1',
+                        data: {
+                            name: 'Layout 1',
+                            cols: 1,
+                            rows: 3,
+                            elements: [{
+                                type: "Button",
+                                label: "+",
+                                id: "plus",
+                            }, {}, {
+                                type: "Button",
+                                label: "-",
+                                id: "minus",
+                            }]
+                        }
+                    });
+                    break;
+            }
     }
 
 });

@@ -25,7 +25,13 @@
     Remote.connection.on('connect', function() {
 
         // register a channel
-        Remote.join(null, function(room) {
+        Remote.register({
+            app: 'chess',
+            version: '0.1.0',
+            maxUsers: 2,
+            timeout: 60 * 1000, // 60 seconds
+            stickySessions: true
+        }, function(room) {
 
             // generate qrcode
             $('#qrcode').empty();
