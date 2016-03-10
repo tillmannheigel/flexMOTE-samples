@@ -49,7 +49,7 @@ Remote.connection.on('connect', function() {
         secret: 'mysecret',
         version: '0.1.0',
         maxUsers: -1,
-        timeout: 5000,
+        timeout: -1,
         stickySessions: false
     }, function(room) {
 
