@@ -42,9 +42,11 @@ Remote.connection = io('http://localhost:3000');
 Remote.connection.on('connect', function() {
     $('body').append('<p>Connection established, register a channel....</p>');
 
-    // register a channel
+    // register a channel, using a reserved room id
     Remote.register({
         app: 'hello-world',
+        room: '12345',
+        secret: 'mysecret',
         version: '0.1.0',
         maxUsers: -1,
         timeout: 5000,
@@ -91,7 +93,7 @@ Remote.connection.on('cmd', function(cmd) {
                 case 'user':
                     if (cmd.data && cmd.data.connected) {
                         $('body').append('<p>User connected, send "Hello World!"....</p>');
-                        Remote.sendCommand('*', layout);
+                        Remote.sendCommand(cmd.id, layout);
                     }
                     break;
             }
