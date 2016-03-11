@@ -3,15 +3,15 @@ var counter = 0;
 /**
  * @public remote connection
  */
-Remote.connection = io('http://localhost:3000');
+flexMOTE.connection = io('http://localhost:3000');
 
 /**
  * onConnect event handler
  */
-Remote.connection.on('connect', function() {
+flexMOTE.connection.on('connect', function() {
 
     // register a channel
-    Remote.register({
+    flexMOTE.register({
         app: 'counter',
         version: '0.1.0',
         maxUsers: 1,
@@ -40,7 +40,7 @@ Remote.connection.on('connect', function() {
 /**
  * onDisconnect event handler
  */
-Remote.connection.on('disconnect', function() {
+flexMOTE.connection.on('disconnect', function() {
     $('#qrcode').empty();
 });
 
@@ -48,7 +48,7 @@ Remote.connection.on('disconnect', function() {
  * onCommand event handler
  * @param {Object} cmd
  */
-Remote.connection.on('cmd', function(cmd) {
+flexMOTE.connection.on('cmd', function(cmd) {
 
     switch (cmd.action) {
         case 'set':
@@ -62,7 +62,7 @@ Remote.connection.on('cmd', function(cmd) {
                     break;
 
                 case 'user':
-                    Remote.sendCommand('*', {
+                    flexMOTE.sendCommand('*', {
                         action: 'set',
                         type: 'layout',
                         id: 'layout-1',
