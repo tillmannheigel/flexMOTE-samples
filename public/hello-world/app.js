@@ -32,18 +32,18 @@ var layout = {
 };
 
 /**
- * @public remote connection
+ * @public socket.io connection
  */
-Remote.connection = io('http://localhost:3000');
+flexMOTE.connection = io('http://localhost:3000');
 
 /**
  * onConnect event handler
  */
-Remote.connection.on('connect', function() {
+flexMOTE.connection.on('connect', function() {
     $('body').append('<p>Connection established, register a channel....</p>');
 
     // register a channel, using a reserved room id
-    Remote.register({
+    flexMOTE.register({
         app: 'hello-world',
         room: '12345',
         secret: 'mysecret',
@@ -75,7 +75,7 @@ Remote.connection.on('connect', function() {
 /**
  * onDisconnect event handler
  */
-Remote.connection.on('disconnect', function() {
+flexMOTE.connection.on('disconnect', function() {
     $('body').append('<p>Disconnected from flexMOTE server. Trying to reconnect...</p>');
     $('#qrcode').empty();
 });
@@ -84,7 +84,7 @@ Remote.connection.on('disconnect', function() {
  * onCommand event handler
  * @param {Object} cmd
  */
-Remote.connection.on('cmd', function(cmd) {
+flexMOTE.connection.on('cmd', function(cmd) {
     $('body').append('<p>Command received:' + JSON.stringify(cmd));
 
     switch (cmd.action) {
@@ -93,7 +93,7 @@ Remote.connection.on('cmd', function(cmd) {
                 case 'user':
                     if (cmd.data && cmd.data.connected) {
                         $('body').append('<p>User connected, send "Hello World!"....</p>');
-                        Remote.sendCommand(cmd.id, layout);
+                        flexMOTE.sendCommand(cmd.id, layout);
                     }
                     break;
             }
