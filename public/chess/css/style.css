@@ -39,6 +39,14 @@ table {
     -ms-transform-origin: top left;
     -moz-transform-origin: top left;
     -webkit-transform-origin: top left;
+    transform: scale3d(0.6,0.6,0.6);
+    -o-transform: scale3d(0.6,0.6,0.6);
+    -ms-transform: scale3d(0.6,0.6,0.6);
+    -moz-transform: scale3d(0.6,0.6,0.6);
+    -webkit-transform: scale3d(0.6,0.6,0.6);
+    top: 0px;
+    left: 268px;
+    width: 800px;
 }
 
 tr {

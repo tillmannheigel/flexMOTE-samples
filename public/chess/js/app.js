@@ -1,96 +1,80 @@
-;(function(window) {
-    "use strict";
+/**
+ * @public socket.io connection
+ */
+flexMOTE.connection = io('http://localhost:3000');
 
-    // ----- dependencies ------------------------------------------------------
-    if (!window.Remote) {
-        throw Error("requires remote.js!");
-    }
+/**
+ * onConnect event handler
+ */
+flexMOTE.connection.on('connect', function() {
 
-    if (!window.Config) {
-        throw Error("requires config.js");
-    }
+    // register a channel
+    flexMOTE.register({
+        app: 'chess',
+        version: '0.1.0',
+        maxUsers: 2,
+        timeout: 60 * 1000, // 60 seconds
+        stickySessions: true
+    }, function(room) {
 
-    // ----- application -------------------------------------------------------
-    var Remote = window.Remote;
-    var Config = window.Config;
-
-    // ----- initialization ----------------------------------------------------
-    Remote.connection = io('http://localhost:3000');
-    Config.currentSkin = 'skin-1';
-
-    // ----- event handler -----------------------------------------------------
-    /**
-     * onConnect
-     */
-    Remote.connection.on('connect', function() {
-
-        // register a channel
-        Remote.register({
-            app: 'chess',
-            version: '0.1.0',
-            maxUsers: 2,
-            timeout: 60 * 1000, // 60 seconds
-            stickySessions: true
-        }, function(room) {
-
-            // generate qrcode
-            $('#qrcode').empty();
-            var qrcode = new QRCode("qrcode", {
-                text: "http://localhost:3000/#" + room.toString(),
-                width: 256,
-                height: 256,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-
-            // some info texts...
-            var info = '<p><a target="_blank" href="http://localhost:3000/#' + room + '">';
-            info += 'localhost:3000<br/>#<strong>' + room + '</strong></p>';
-            $('#qrcode').append(info);
-        });
-    });
-
-    /**
-     * onDisconnect
-     */
-    Remote.connection.on('disconnect', function() {
+        // generate qrcode
         $('#qrcode').empty();
+        var qrcode = new QRCode("qrcode", {
+            text: "http://localhost:3000/#" + room.toString(),
+            width: 256,
+            height: 256,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // some info texts...
+        var info = '<p><a target="_blank" href="http://localhost:3000/#' + room + '">';
+        info += 'localhost:3000<br/>#<strong>' + room + '</strong></p>';
+        $('#qrcode').append(info);
     });
+});
 
-    /**
-     * defines the default handler for remote commands.
-     * @param {Object} cmd
-     */
-    Remote.connection.on('cmd', function(cmd) {
-        switch (cmd.type) {
-            //case '...':
-            // break;
+/**
+ * onDisconnect event handler
+ */
+flexMOTE.connection.on('disconnect', function() {
+    $('#qrcode').empty();
+});
 
-            default:
-                Remote.sendCommand('*', Config.skins[Config.currentSkin], function() {
-                    Remote.sendCommand('*', Config.layouts['layout-1']);
-                });
-                break;
-        }
-    });
+/**
+ * onCommand event handler
+ * @param {Object} cmd
+ */
+flexMOTE.connection.on('cmd', function(cmd) {
+    switch (cmd.action) {
+        case 'set':
+            switch (cmd.type) {
+                case 'user':
+                    flexMOTE.sendCommand(cmd.id, Config.skins[Config.currentSkin], function() {
+                        flexMOTE.sendCommand(cmd.id, Config.layouts['layout-1']);
+                    });
+                    break;
+            }
+            break;
+    }
+});
 
-    /**
-     * @param {Object} event
-     */
-    $('#button-skin-1').on('click', function(event) {
-        Config.currentSkin = 'skin-1';
-        $('body').attr('id', 'skin-1');
-        Remote.sendCommand('*', Config.skins[Config.currentSkin]);
-    });
+// ---- DOM event handler ------------------------------------------------------
+/**
+ * @param {Object} event
+ */
+$('#button-skin-1').on('click', function(event) {
+    Config.currentSkin = 'skin-1';
+    $('body').attr('id', 'skin-1');
+    flexMOTE.sendCommand('*', Config.skins[Config.currentSkin]);
+});
 
-    /**
-     * @param {Object} event
-     */
-    $('#button-skin-2').on('click', function(event) {
-        Config.currentSkin = 'skin-2';
-        $('body').attr('id', 'skin-2');
-        Remote.sendCommand('*', Config.skins[Config.currentSkin]);
-    });
-
-})(window);
+/**
+ * @param {Object} event
+ */
+$('#button-skin-2').on('click', function(event) {
+    Config.currentSkin = 'skin-2';
+    $('body').attr('id', 'skin-2');
+    flexMOTE.sendCommand('*', Config.skins[Config.currentSkin]);
+});
