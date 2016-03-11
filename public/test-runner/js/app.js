@@ -2,50 +2,54 @@
     "use strict";
 
     // ----- dependencies ------------------------------------------------------
-    if (!window.Remote) {
-        throw Error("requires remote.js!");
+    if (!window.flexMOTE) {
+        throw Error("requires flexMOTE.js!");
     }
 
     if (!window.Config) {
         throw Error("requires config.js");
     }
 
-    // ----- application -------------------------------------------------------
-    var Remote = window.Remote;
+    var flexMOTE = window.flexMOTE;
     var Config = window.Config;
-    var App = window.App = {};
+
+    // ----- application -------------------------------------------------------
+    /**
+     *
+     */
+    var app = window.app = {};
 
     /**
      *
      */
-    App.user = null;
+    app.user = null;
 
     /**
      *
      */
-    App.userTimeout = null;
+    app.userTimeout = null;
 
     /**
      *
      */
-    App.room = null;
+    app.room = null;
 
     /**
      * defines the default handler for remote commands.
      * @param {Object} cmd
      */
-    App.handleCommand = function(cmd) {
-        Remote.DEBUG && console.log('app | handleCommand:', cmd.type);
+    app.onCommand = function(cmd) {
+        console.log('app | onCommand:', cmd.type);
 
         // valid commands for connected user
-        if (App.user && App.user.id) {
-            clearInterval(App.userTimeout);
-            App.userTimeout = setInterval(App.onUserTimeout, 5000);
+        if (app.user && app.user.id) {
+            clearInterval(app.userTimeout);
+            app.userTimeout = setInterval(app.onUserTimeout, 5000);
             switch (cmd.type) {
                 case 'skin':
                 case 'layout':
                 case 'button':
-                    Remote.handleCommand(cmd);
+                    flexMOTE.onCommand(cmd);
                     break;
             }
         }
@@ -55,17 +59,17 @@
             case 'user':
                 switch (cmd.action) {
                     case 'set':
-                        if (!cmd.data && App.user && App.user.id == cmd.id) {
-                            App.onUserTimeout();
+                        if (!cmd.data && app.user && app.user.id == cmd.id) {
+                            app.onUserTimeout();
                         }
 
-                        if (cmd.data && (!App.user || App.user.id == cmd.id)) {
-                            App.user = cmd;
+                        if (cmd.data && (!app.user || app.user.id == cmd.id)) {
+                            app.user = cmd;
                             $('#user').html(cmd.id).show();
-                            Remote.sendCommand(App.user.id, Config.skins['skin-1'], function() {
-                                Remote.sendCommand(App.user.id, Config.layouts['layout-1']);
+                            flexMOTE.sendCommand(app.user.id, Config.skins['skin-1'], function() {
+                                flexMOTE.sendCommand(app.user.id, Config.layouts['layout-1']);
                             });
-                            App.userTimeout = setInterval(App.onUserTimeout, 5000);
+                            app.userTimeout = setInterval(app.onUserTimeout, 5000);
                         }
                         break;
                 }
@@ -75,22 +79,22 @@
     /**
      *
      */
-    App.onUserTimeout = function() {
-        clearInterval(App.userTimeout);
-        Remote.DEBUG && console.log('app | onUserTimeout');
-        App.user = null;
+    app.onUserTimeout = function() {
+        clearInterval(app.userTimeout);
+        console.log('app | onUserTimeout');
+        app.user = null;
         $('#user').empty().hide();
     };
 
     /**
      *
      */
-    App.onConnect = function() {
-        Remote.DEBUG && console.log('app | onConnect');
+    app.onConnect = function() {
+        console.log('app | onConnect');
 
         $('body').append('<p>Attempting to connect to flexMOTE server....</p>');
 
-        Remote.register({
+        flexMOTE.register({
             app: 'test-runner',
             version: '0.1.0',
             maxUsers: 1,
@@ -118,23 +122,22 @@
             info += 'localhost:3000<br/>#<strong>' + room + '</strong></p>';
             $('#qrcode').append(info);
 
-            App.room = room;
+            app.room = room;
         });
     };
 
     /**
      *
      */
-    App.onDisconnect = function() {
-        Remote.DEBUG && console.log('app | onDisconnect');
+    app.onDisconnect = function() {
+        console.log('app | onDisconnect');
         $('body').append('<p>Disconnected from flexMOTE server. Trying to reconnect...</p>');
     };
 
     // ----- initialization ----------------------------------------------------
-    // @TODO connect to right channel / room /namespace
-    Remote.connection = io(Config.server);
-    Remote.connection.on('connect', App.onConnect);
-    Remote.connection.on('disconnect', App.onDisconnect);
-    Remote.connection.on('cmd', App.handleCommand);
+    flexMOTE.connection = io(Config.server);
+    flexMOTE.connection.on('connect', app.onConnect);
+    flexMOTE.connection.on('disconnect', app.onDisconnect);
+    flexMOTE.connection.on('cmd', app.onCommand);
 
 })(window);
