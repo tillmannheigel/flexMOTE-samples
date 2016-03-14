@@ -100,7 +100,7 @@
             maxUsers: 1,
             timeout: 5 * 1000, // 5 seconds
             stickySessions: true
-        }, function(room) {
+        }, function(status, room) {
 
             var html = '<p>Connection established. Open RC ';
             html += '<a target="_blank" href="' + Config.server + '#' + room + '">';

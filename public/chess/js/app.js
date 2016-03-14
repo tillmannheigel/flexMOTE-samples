@@ -15,7 +15,7 @@ flexMOTE.connection.on('connect', function() {
         maxUsers: 2,
         timeout: 60 * 1000, // 60 seconds
         stickySessions: true
-    }, function(room) {
+    }, function(status, room) {
 
         // generate qrcode
         $('#qrcode').empty();

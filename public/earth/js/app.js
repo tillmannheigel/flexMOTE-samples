@@ -54,7 +54,7 @@ flexMOTE.connection.on('connect', function() {
         maxUsers: 1,
         timeout: 5 * 1000, // 60 seconds
         stickySessions: false
-    }, function(room) {
+    }, function(status, room) {
 
         $('body').append('<div id="qrcode" style="text-align:center;position:absolute;top:20px;left:20px;z-index:1000;background:#FFF;padding:20px"></div>');
         var qrcode = new QRCode("qrcode", {
