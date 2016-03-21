@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>flexMOTE - Samples - Multi Screens - App</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <link type="text/css" rel="stylesheet" href="style.css" />
+        <link href="http://vjs.zencdn.net/5.8.0/video-js.css" rel="stylesheet">
+    </head>
+
+    <body class="no-padding">
+        <video id="my-video" class="video-js" preload="auto" width="640" height="264"
+        poster="http://vjs.zencdn.net/v/oceans.png" src="http://vjs.zencdn.net/v/oceans.mp4">
+            <source type="video/mp4" src="http://vjs.zencdn.net/v/oceans.mp4"></source>
+            <source type="video/webm" src="http://vjs.zencdn.net/v/oceans.webm"></source>
+            <source type="video/ogg" src="http://vjs.zencdn.net/v/oceans.ogv"></source>
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">
+                    supports HTML5 video
+                </a>
+            </p>
+        </video>
+
+        <script type="text/javascript" src="http://vjs.zencdn.net/5.8.0/video.js"></script>
+        <script type="text/javascript" src="http://localhost:3000/lib/zepto.min.js"></script>
+        <script type="text/javascript" src="http://localhost:3000/lib/socket.io-1.3.5.js"></script>
+        <script type="text/javascript" src="http://localhost:3000/lib/qrcode.min.js"></script>
+        <script type="text/javascript" src="http://localhost:3000/lib/flexMOTE.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
