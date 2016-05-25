@@ -14,7 +14,7 @@ Config.skins['skin-1'] = {
     type: 'skin',
     id: 'skin-1',
     data: {
-        url: 'http://localhost:3001/chess/css/skins.css'
+        url: 'http://localhost:3001/skin-demo/css/skins.css'
     }
 };
 
@@ -26,7 +26,7 @@ Config.skins['skin-2'] = {
     type: 'skin',
     id: 'skin-2',
     data: {
-        url: 'http://localhost:3001/chess/css/skins.css'
+        url: 'http://localhost:3001/skin-demo/css/skins.css'
     }
 };
 
@@ -34,7 +34,7 @@ Config.currentSkin = 'skin-1';
 
 // ----- layouts ---------------------------------------------------------------
 /**
- * default chess layout
+ * default skin-demo layout
  */
 Config.layouts['layout-1'] = {
     action: 'set',
