@@ -18,7 +18,7 @@ if(args["h"] || args["help"]) {
     //regular server start
     var server = args["s"] || args ["server"] || "localhost"
     var port = args["p"] || args ["port"] || "3000"
-    console.log("flextMOTE Server: " + server + ":" + port);
+    var localport = args["l"] || args ["localport"] || 3001
 
     // config
     app.use(compress());
@@ -28,8 +28,10 @@ if(args["h"] || args["help"]) {
     }));
 
     // start
-    http.listen(3001, function() {
-        console.log('flexmote.js - samples; listening on *:3001');
+    http.listen(localport, function() {
+        process.stdout.write(`flexMOTE.js - samples
+            ...client: listening to *:` + localport + `
+            ...server: requesting to `  + server + `:` + port +"\n");
     });
 
 }
@@ -39,7 +41,8 @@ function printHelpMessage(){
 
     ARGUMENTS
     \t-h, --help\t print this help message
-    \t-s, --server\t set the ip address of the flexMOTE server [default: 127.0.0.1]
+    \t-l, --localport\t set the port of the flexMOTE client instance [default: 3001]
     \t-p, --port\t set the port of the flexMOTE server [default: 3000]
+    \t-s, --server\t set the ip address of the flexMOTE server [default: 127.0.0.1]
     `+"\n");
 };
